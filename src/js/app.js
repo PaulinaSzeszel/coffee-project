@@ -1,15 +1,13 @@
 import Product from './Product.js';
-import { classNames, select, settings } from './settings.js';
+import { article, classNames, select, settings } from './settings.js';
 
 const app = {
 
   initPages: function () {
-
     const links = document.querySelectorAll(select.nav.links);
-
-    const articleAbout = document.querySelector(select.pages.about);
-    const articleProduct = document.querySelector(select.pages.products);
-    const articleContact = document.querySelector(select.pages.contact);
+    const articleAbout = document.querySelector(article.about);
+    const articleProduct = document.querySelector(article.products);
+    const articleContact = document.querySelector(article.contact);
 
     for (let link of links) {
       link.addEventListener('click', function(event) {
@@ -32,7 +30,6 @@ const app = {
         }
       });
     }
-
   },
 
   initData: function(){
@@ -56,9 +53,7 @@ const app = {
     for(let productData in thisApp.data.products){
       new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
     }
-
   },
-
 
   initHamburger: function(){
     const hamburger = document.getElementById('hamburger');
@@ -67,7 +62,6 @@ const app = {
     hamburger.addEventListener('click', () => {
       navUL.classList.toggle('show');
     });
-
   },
 
   init: function() {
@@ -75,12 +69,10 @@ const app = {
 
     thisApp.initPages();
     thisApp.initData();
+    thisApp.initMenu();
     //thisApp.initHome();
     //thisApp.initContact();
     thisApp.initHamburger();
-
   },
-
 };
-
-app.init();
+app.init ();

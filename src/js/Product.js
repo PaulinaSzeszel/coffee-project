@@ -1,4 +1,4 @@
-import { templates, select } from './settings.js';
+import { article, classNames, select, settings } from './settings.js';
 import { utils } from './utils.js';
 
 class Product {
@@ -14,16 +14,16 @@ class Product {
   renderInMenu(){
     const thisProduct = this;
 
-    const generatedHTML = templates.menuProduct({ ...thisProduct.data, image: thisProduct.data.images[0] });
+    const generatedHTML = templates.menuProduct(thisProduct.data);
 
 
     thisProduct.element = utils.createDOMFromHTML(generatedHTML);
     //console.log(thisProduct.element);
 
 
-    const menuContainerHome = document.querySelector(select.containerOf.productsList);
+    const menuContainerHome = document.querySelector(select.containerOf.home);
 
-    menuContainerHome.appendChild(thisProduct.element);
+    menuContainerHome.append(thisProduct.element);
 
   }
 }
