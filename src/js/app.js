@@ -70,8 +70,8 @@ const app = {
     thisApp.initPages();
     thisApp.initData();
     thisApp.initMenu();
-    //thisApp.initHome();
-    //thisApp.initContact();
+    thisApp.initHome();
+    thisApp.initContact();
     thisApp.initHamburger();
   },
 };

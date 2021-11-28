@@ -1,14 +1,14 @@
 export const select = {
   templateOf: {
-  //   homeWidget: '#template-home-widget',
+    homeWidget: '#template-home-widget',
     productList: '#template-products-widget',
-  //   contactList: '#template-contact-widget',
+    contactList: '#template-contact-widget',
   },
   containerOf: {
-    //menu: '#product-list',
+    menu: '#product-list',
     pages: '#pages',
     home: '.home-wrapper',
-    //contact: '.contact',
+    contact: '.contact',
   },
   nav: {
     links: '.main-nav a',
@@ -44,7 +44,7 @@ export const settings = {
 };
 
 export const templates = {
-  //homeWidget: Handlebars.compile(document.querySelector(select.templateOf.homeWidget).innerHTML),
+  homeWidget: Handlebars.compile(document.querySelector(select.templateOf.homeWidget).innerHTML),
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.productList).innerHTML),
-  //contactList: Handlebars.compile(document.querySelector(select.templateOf.contactList).innerHTML),
+  contactList: Handlebars.compile(document.querySelector(select.templateOf.contactList).innerHTML),
 };
