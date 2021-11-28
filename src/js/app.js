@@ -1,67 +1,104 @@
-import Product from './Product.js';
-import { article, classNames, select, settings } from './settings.js';
+import Products from './pages/Products.js';
+import Contact from './pages/Contact.js';
+import Home from './pages/Home.js';
+import { settings, classNames, select } from './settings.js';
 
 const app = {
 
-  initPages: function () {
-    const links = document.querySelectorAll(select.nav.links);
-    const articleAbout = document.querySelector(article.about);
-    const articleProduct = document.querySelector(article.products);
-    const articleContact = document.querySelector(article.contact);
+  initPages: function(){
+    const thisApp = this;
 
-    for (let link of links) {
-      link.addEventListener('click', function(event) {
-        event.preventDefault();
+    thisApp.pages = document.querySelector(select.containerOf.pages).children;
+    thisApp.navLinks = document.querySelectorAll(select.nav.links);
+
+    const idFromHash = window.location.hash.replace('#/', '');
+
+    let pageMatchingHash = thisApp.pages[0].id;
+
+    for(let page of thisApp.pages){
+      if(page.id == idFromHash){
+        pageMatchingHash = page.id;
+        break;
+      }
+    }
+
+    thisApp.activatePage(pageMatchingHash);
+
+    for(let link of thisApp.navLinks){
+      link.addEventListener('click', function(event){
         const clickedElement = this;
+        event.preventDefault();
 
-        articleAbout.classList.remove(classNames.pages.active);
-        articleProduct.classList.remove(classNames.pages.active);
-        articleContact.classList.remove(classNames.pages.active);
+        // get page id from href attribute
+        const id = clickedElement.getAttribute('href').replace('#', '');
 
-        const href = clickedElement.getAttribute('href');
+        // run thisApp.activatePage with that id
+        thisApp.activatePage(id);
 
-        if (href == '#products') {
-          articleProduct.classList.add(classNames.pages.active);
-        } if (href == '#home') {
-          articleAbout.classList.add(classNames.pages.active);
-          articleProduct.classList.add(classNames.pages.active);
-        } if (href == '#contact') {
-          articleContact.classList.add(classNames.pages.active);
-        }
+        // change URL hash
+        window.location.hash = '#/' + id;
       });
     }
   },
 
-  initData: function(){
+  activatePage: function(pageId){
     const thisApp = this;
 
-    thisApp.data = {};
-    const url = settings.db.url + '/' + settings.db.products;
+    // add class 'active' to matching pages, remove from non-matching
+    for(let page of thisApp.pages){
+      page.classList.toggle(classNames.pages.active, page.id == pageId);
+    }
 
+    // add class 'active' to matching links, remove from non-matching
+    for(let link of thisApp.navLinks){
+      link.classList.toggle(
+        classNames.nav.active,
+        link.getAttribute('href') == '#' + pageId
+      );
+    }
+  },
+
+  initData: function() {
+    const thisApp = this;
+    const url = settings.db.url + '/' + settings.db.products;
+    this.data = {};
     fetch(url)
-      .then(function(rawResponse){
+      .then((rawResponse) => {
         return rawResponse.json();
       })
-      .then(function(parsedResponse){
-        thisApp.data.products = parsedResponse;
-        thisApp.initMenu();
+      .then((parsedResponse) => {
+        this.data.products = parsedResponse;
+        thisApp.initContact();
+        thisApp.initHome();
+        thisApp.initProducts();
       });
   },
 
-  initMenu: function(){
+  initContact: function(){
     const thisApp = this;
-    for(let productData in thisApp.data.products){
-      new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
-    }
+
+    // find container
+    const contactContainer = document.querySelector(select.containerOf.contact);
+    // new instance of contact
+    thisApp.contact = new Contact(contactContainer);
   },
 
-  initHamburger: function(){
-    const hamburger = document.getElementById('hamburger');
-    const navUL= document.getElementById('nav-ul');
+  initHome: function(){
+    const thisApp = this;
 
-    hamburger.addEventListener('click', () => {
-      navUL.classList.toggle('show');
-    });
+    // find container
+    const homeContainer = document.querySelector(select.containerOf.home);
+    // new instance of home
+    thisApp.home = new Home(homeContainer, thisApp.data);
+  },
+
+  initProducts: function(){
+    const thisApp = this;
+
+    // find container
+    const productsContainer = document.querySelector(select.containerOf.products);
+    // new instance of products
+    thisApp.products = new Products(productsContainer, thisApp.data);
   },
 
   init: function() {
@@ -69,10 +106,7 @@ const app = {
 
     thisApp.initPages();
     thisApp.initData();
-    thisApp.initMenu();
-    thisApp.initHome();
-    thisApp.initContact();
-    thisApp.initHamburger();
   },
 };
-app.init ();
+
+app.init();
