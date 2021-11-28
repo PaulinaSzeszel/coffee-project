@@ -10,173 +10,132 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
-    <header class="header">
-        <img src="images/background.png" alt="">
-
-        <div class="flex">
-          <div class="head-description">
-            <div class="logo">
-              <h3 class="">EL TIGRE </h3>
-              <p>VENEZUELA COFFEE BEANS</p>
-            </div>
-
-            <button class="hamburger" id="hamburger" type="button">
-              <i class="fas fa-bars"></i>
-            </button>
-
-            <ul class="nav-ul main-nav" id="nav-ul">
-              <li><a href="#home">HOME</a></li>
-              <li><a href="#products">PRODUCTS</a></li>
-              <li><a href="#contact">CONTACT</a></li>
-            </ul>
-
+<header class="header">
+    <img src="images/background.png" alt="background">
+    <div class="top">
+      <div class="upperline">
+        <div class="top-logo">
+          <h3>EL TIGRE</h3>
+          <p>VENEZUELA COFFEE BEANS</p>
         </div>
-
-          <div class="main-text">
-            <h1 class="skill-left">HOME OF</h1>
-            <h1 class="skill-right">ORIGINAL TASTES</h1>
-            <p class="line"></p>
-          </div>
-
-          <div class="bottom-text">
-            <h3>DISCOVER</h3>
-            <i class="far fa-arrow-alt-circle-down"></i>
-          </div>
+        <div class="main-nav">
+          <a href="#home">Home</a>
+          <a href="#products">Products</a>
+          <a href="#contact">Contact</a>
         </div>
-    </header>
+      </div>
+    </div>
+    <div class="main-title">
+      <h1 class="title-left">HOME OF</h1>
+      <h1 class="title-right">ORIGINAL TASTES</h1>
+      <p class="title-line col-2"></p>
+    </div>
+    <div class="bottom-text">
+      <h2 class="discover">DISCOVER</h2>
+      <i class="icon-arrow"></i>
+    </div>
+  </header>
 
-      <article class="article-product home-wrapper active" id="article-product">
-
-        <div class="title">
+  <div id="pages">
+    <section id="home">
+      <div class="home-wrapper container">
+      </div>
+    </section>
+    <section id="products">
+      <div class="products-wrapper container">
+        <div class="section-title">
           <h2>PRODUCTS</h2>
+          <p class="section-title-line col-4"></p>
         </div>
-        <div class="product-list">
-          <div class="product-widget container">
-            <div class="skill-description">
-              <h3 class="name">01.LA LAGARTIJA</h3>
-        </div>
-        <div class="row description">
-          <p class="border-top col-2"></p>
-          <span class="col-8">Mysterious and treacherous... The best choice for  the start of your journey! It will provide you a rich  delicious flavor.</span>
-        </div>
-        <div class="row">
-          <div class="col-sm-5 specification">
-            <p>ROASTING: <span>5/10</span></p>
-            <p>INTENSITY: <span>6/10</span></p>
+        <div class="products-list"></div>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="contact-wrapper container"></div>
+    </section>
+  </div>
+
+  <script id="template-product-widget" type="text/x-handlebars-template">
+    <div class="product-widget">
+      <div class="row product-box">
+        <div class="product-info col-6">
+          <h1 class="product-title">{{{ title }}}</h1>
+          <div class="row product-description">
+            <p class="line col-2"></p>
+            <span class="text col-6">{{{ description }}}</span>
           </div>
-          <div class="col-sm-5">
-            <img src="images/badge.png" alt=".">
+          <div class="details row">
+            <div class="qualities col-5">
+              <p class="roasting">ROASTING:<span> {{{ roasting }}}</span></p>
+              <p class="intensity">ROASTING:<span> {{{ intensity }}}</span></p>
+            </div>
+            <div class="most-popular col-2">
+              {{{ most-popular }}}
+            </div>
           </div>
         </div>
-      </div>
-      <div class="skill-right">
-        <div class="skill-image">
-          <img src="images/coffee-1.png" alt=".">
+        <div class="image col-5">
+          {{{ images }}}
         </div>
       </div>
     </div>
-    <div class="product-widget container">
-      <div class="skill-description">
-        <h3 class="name">02.EL TIGRE</h3>
-    </div>
-    <div class="row description">
-      <p class="border-top col-2"></p>
-      <span class="col-8">Really dark coffee, only for the real gourmets. It has bitter flavor of grapefruits and is mixed with a little bit of peanuts with caramel.</span>
-    </div>
-    <div class="row">
-      <div class="col-sm-5 specification">
-        <p>ROASTING: <span>8/10</span></p>
-        <p>INTENSITY: <span>9/10</span></p>
+  </script>
+
+  <script id="template-home-widget" type="text/x-handlebars-template">
+    <div class="products-list">
+      <div class="section-title">
+        <h2>PRODUCTS</h2>
+        <p class="section-title-line col-5"></p>
       </div>
     </div>
+    <div class="home-widget">
+      <img src="images/about-us.jpg" alt="about">
+        <div class="about-section-title">
+          <h2>ABOUT US</h2>
+          <p class="about-section-title-line col-5"></p>
+        </div>
+        <div class="who">
+        <p>Who are we? Just a bunch of friends with a love for a good coffee and desire to create something new, something original.
+          <br>
+          <br>Our coffees reflect us - young, wild and free. We are on the journey of new tastes...
+          <br>
+          <br><span>Join us!</span>
+        </p>
+        </div>
     </div>
-    <div class="skill-right">
-      <div class="skill-image">
-        <img src="images/coffee-2.png" alt=".">
+  </script>
+
+  <script id="template-contact-widget" type="text/x-handlebars-template">
+    <div class="contact-widget">
+      <div class="section-title">
+        <h2>CONTACT US</h2>
+        <p class="section-title-line col-5"></p>
       </div>
-    </div>
-
-    <div class="product-widget container">
-      <div class="skill-description">
-        <h3 class="name">03.LA CUCARACHA</h3>
-    </div>
-    <div class="row description">
-      <p class="border-top col-2"></p>
-      <span class="col-8">Sweet and intense with a big amount of different flavors. Caramel,  grapes, strwaberry, you name it! It’s great choice for warm summer days.</span>
-    </div>
-    <div class="row">
-      <div class="col-sm-5 specification">
-        <p>ROASTING: <span>3/10</span></p>
-        <p>INTENSITY: <span>7/10</span></p>
-      </div>
-    </div>
-    </div>
-    <div class="skill-right">
-      <div class="skill-image">
-        <img src="images/coffee-3.png" alt=".">
-      </div>
-    </div>
-
-
-
-        <article class="article-about active" id="article-about">
-
-            <div class="home-widget">
-              <img src="images/about-us.jpg" alt=".">
-
-              <div class="title about">
-                <h2>ABOUT US</h2>
-              </div>
-
-              <div class="who">
-                <p>Who are we? Just a bunch of friends with a love for a good coffee and desire to create something new,
-                  something original. Our coffees reflect us – young, wild and free. We are on the journey of new tastes...
-                  <br>Join us!<br>
-                </p>
-              </div>
-            </div>
-          </article>
-
-    </article>
-
-    <article class="article-contact" id="article-contact">
-
-        <div class="contact-widget">
-            <div class="title about">
-            <h2>CONTACT US</h2>
+      <div class="form">
+        <form>
+          <div class="form-input ">
+            <label for="filed-name">NAME</label><br>
+            <input type="text" id="name" required>
           </div>
-
-          <form class="form" action="mailto:sadow.adrian@gmail.com" method="post" enctype="text/plain">
-            <div class="form-row">
-              <label for="filed-name">NAME</label><br>
-              <input type="text" name="name" required id="filed-name">
-            </div>
-
-            <div class="form-row">
-              <label for="filed-name">TITLE</label><br>
-              <input type="text" name="title" required id="filed-title">
-            </div>
-
-            <div class="form-row">
-              <label for="field-message" class="field-message">MESSAGE</label>
-              <textarea name="message" required id="field-message"></textarea>
-            </div>
-
-            <div class="form-row">
-              <button type="submit" class="submit-btn">SUBMIT</button>
-            </div>
-
-          </form>
-        </div>
-      </article>
-
-      <footer>
-        <p> © 2021 EL TIGRE inc.</p>
-      </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
-    <script src="js/script.js" type="module"></script>
-
-</body>
+          <div class="form-input">
+            <label for="filed-title">TITLE</label><br>
+            <input type="text" id="title" required>
+          </div>
+          <div class="form-input">
+            <label for="filed-message">MESSAGE</label><br>
+            <textarea rows="10" cols="15" id="message" required></textarea>
+          </div>
+          <div class="form-input">
+            <button type="submit">SUBMIT</button>
+          </div>
+      </form>
+      </div>
+    </div>
+  </script>
+  <footer class="footer">
+    <p> © 2021 EL TIGRE inc.</p>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+  <script src="js/app.js" type="module"></script>
+  </body>
 </html>
