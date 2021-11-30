@@ -45,6 +45,6 @@ export const settings = {
 
 export const templates = {
   homeWidget: Handlebars.compile(document.querySelector(select.templateOf.homeWidget).innerHTML),
-  menuProduct: Handlebars.compile(document.querySelector(select.templateOf.productList).innerHTML),
+  menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   contactList: Handlebars.compile(document.querySelector(select.templateOf.contactList).innerHTML),
 };
