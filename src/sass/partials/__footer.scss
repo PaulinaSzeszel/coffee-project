@@ -1,5 +1,9 @@
-footer {
+.footer {
   font-size: 15px;
   font-weight: $font-weight-semi-bold;
   margin: 20px 0;
+
+  p {
+    text-align: center;
+  }
 }
