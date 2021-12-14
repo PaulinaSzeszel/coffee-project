@@ -54,20 +54,22 @@ const app = {
       link.classList.toggle(
         classNames.nav.active,
         link.getAttribute('href') == '#' + pageId
-      );
-    }
+      )};
   },
 
   initData: function() {
+
     const thisApp = this;
+
+    thisApp.data = {};
     const url = settings.db.url + '/' + settings.db.products;
-    this.data = {};
+
     fetch(url)
       .then((rawResponse) => {
         return rawResponse.json();
       })
       .then((parsedResponse) => {
-        this.data.products = parsedResponse;
+        thisApp.data.products = parsedResponse;
         thisApp.initContact();
         thisApp.initHome();
         thisApp.initProducts();
